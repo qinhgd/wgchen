@@ -248,12 +248,6 @@ systemctl restart alist
 ### **9. 其他订阅链接**
 以下是你提供的订阅链接，可以用于配置代理工具（如 V2Ray 或 Clash）：
 ```
-https://sub.vip.sd/JPa6vvFgygVtNP2sGJ2r/download/NL?target=V2Ray
-https://ss.cft.my/api/v1/client/subscribe?token=0fc3bf2d9f05074b1e5bd5ace8af359e
-https://nachoneko.cn/api/v1/client/subscribe?token=7678c2fc5d5860bdb8d621a9a0801295
-https://sub.vip.sd/JPa6vvFgygVtNP2sGJ2r/download/NL?target=Clash
-https://sub.443888.xyz/vless
-```
 
 ---
 
