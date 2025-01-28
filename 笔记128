@@ -1,0 +1,78 @@
+这段代码包含多个命令和配置，涉及网络设置、DNS 配置、防火墙规则、以及服务管理。以下是整理和备注：
+
+### 1. Tailscale 配置
+```bash
+sudo tailscale up --advertise-routes=192.168.31.0/24
+```
+- **功能**: 启动 Tailscale 并通告路由 `192.168.31.0/24`，使其他 Tailscale 节点可以访问该子网。
+- **备注**: Tailscale 是一个基于 WireGuard 的 VPN 工具，用于创建安全的私有网络。
+
+### 2. DNS 服务器列表
+```plaintext
+123.125.81.6
+114.114.114.114
+tls://dns.pub
+tls://dns.alidns.com
+https://dns.alidns.com/dns-query
+119.29.29.29
+1.2.4.8
+101.226.4.6
+https://1.1.1.1/dns-query
+https://1.0.0.1/dns-query
+https://doh.pub/dns-query
+https://dns.alidns.com/dns-query
+https://doh.360.cn/dns-query
+https://dns.google/dns-query
+tls://8.8.8.8
+```
+- **功能**: 列出多个 DNS 服务器地址，包括传统的 UDP/TCP DNS 和基于 TLS/HTTPS 的 DNS-over-HTTPS (DoH) 和 DNS-over-TLS (DoT) 服务器。
+- **备注**: 这些 DNS 服务器可以用于提高 DNS 查询的安全性和隐私性。
+
+### 3. 多个 DNS 服务器组合
+```plaintext
+210.21.4.130,114.114.114.114,223.6.6.6
+```
+- **功能**: 列出多个 DNS 服务器地址，可能是用于负载均衡或备用 DNS 服务器。
+- **备注**: 多个 DNS 服务器可以提高 DNS 查询的可靠性。
+
+### 4. iptables 防火墙规则
+```bash
+iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
+iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
+ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
+ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
+```
+- **功能**: 设置 iptables 规则，将所有 TCP 和 UDP 的 DNS 请求（端口 53）重定向到本地的 53 端口。
+- **备注**: 这些规则适用于 IPv4 和 IPv6，可能是为了强制 DNS 查询通过本地 DNS 服务器。
+
+### 5. Cpolar 认证令牌
+```bash
+cpolar authtoken YTY4MGMwZjctMjRjMi00NWEyLThkYmMtYjJlMGYzZGEwMmY3
+```
+- **功能**: 设置 Cpolar 的认证令牌。
+- **备注**: Cpolar 是一个内网穿透工具，用于将本地服务暴露到公网。
+
+### 6. 停止 Singbox 服务
+```bash
+systemctl stop singbox
+```
+- **功能**: 停止 Singbox 服务。
+- **备注**: Singbox 可能是一个代理或网络工具，具体用途需要根据实际情况确定。
+
+### 7. 终止 Screen 会话
+```bash
+screen -R 28105 -X quit
+```
+- **功能**: 终止指定的 Screen 会话（会话 ID 为 28105）。
+- **备注**: Screen 是一个终端多路复用工具，用于管理多个终端会话。
+
+### 总结
+这段代码主要涉及以下操作：
+1. 配置 Tailscale 通告路由。
+2. 列出多个 DNS 服务器地址。
+3. 设置 iptables 规则以重定向 DNS 请求。
+4. 配置 Cpolar 的认证令牌。
+5. 停止 Singbox 服务。
+6. 终止指定的 Screen 会话。
+
+这些操作可能与网络配置、DNS 解析、防火墙设置、以及服务管理相关。
