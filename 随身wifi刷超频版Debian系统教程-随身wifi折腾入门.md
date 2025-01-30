@@ -1,5 +1,3 @@
-这是一篇非常详细的Debian系统折腾记录。为了让内容更清晰易读，我对其进行了重新整理和优化：
-
 ### 1. 更新和升级系统中已安装的软件包
 ```bash
 apt-get update && apt-get upgrade && apt-get update --fix-missing
